@@ -1,0 +1,426 @@
+
+Entered readFile
+Entered readFile
+Entered readFile
+The first entry in the file is: ifeng.com
+Entered writeFile
+The first entry in the file is: amazon.com
+The first entry in the file is: facebook.com
+Entered writeFile
+Entered writeFile
+Entered writeFile
+Trying to join Resolver Threads
+Entered writeFile
+It's IP address is: 31.13.95.36
+The first entry in the file is: youtube.com
+Writing facebook.com,31.13.95.36 to output
+It's IP address is: 210.51.19.63
+It's IP address is: 54.239.26.128
+The first entry in the file is: goo.ne.jp
+The first entry in the file is: wordpress.com
+Writing ifeng.com,210.51.19.63 to output
+Writing amazon.com,54.239.26.128 to output
+It's IP address is: 192.0.78.17
+The first entry in the file is: tudou.com
+Writing wordpress.com,192.0.78.17 to output
+It's IP address is: 216.58.217.46
+The first entry in the file is: yahoo.com
+Writing youtube.com,216.58.217.46 to output
+It's IP address is: 98.139.183.24
+The first entry in the file is: live.com
+Writing yahoo.com,98.139.183.24 to output
+It's IP address is: 65.55.206.154
+The first entry in the file is: wikipedia.org
+Writing live.com,65.55.206.154 to output
+It's IP address is: 208.80.153.224
+The first entry in the file is: msn.com
+Writing wikipedia.org,208.80.153.224 to output
+It's IP address is: 23.101.196.141
+The first entry in the file is: baidu.com
+Writing msn.com,23.101.196.141 to output
+It's IP address is: 123.125.114.144
+The first entry in the file is: blogspot.com
+Writing baidu.com,123.125.114.144 to output
+It's IP address is: 216.58.217.41
+The first entry in the file is: microsoft.com
+Writing blogspot.com,216.58.217.41 to output
+It's IP address is: 191.239.213.197
+The first entry in the file is: qq.com
+Writing microsoft.com,191.239.213.197 to output
+It's IP address is: 153.254.147.65
+The first entry in the file is: bbc.co.uk
+Writing goo.ne.jp,153.254.147.65 to output
+It's IP address is: 212.58.246.78
+The first entry in the file is: yandex.ru
+Writing bbc.co.uk,212.58.246.78 to output
+It's IP address is: 125.39.240.113
+The first entry in the file is: taobao.com
+Writing qq.com,125.39.240.113 to output
+It's IP address is: 77.88.55.66
+The first entry in the file is: myspace.com
+Writing yandex.ru,77.88.55.66 to output
+It's IP address is: 63.135.90.70
+The first entry in the file is: mail.ru
+Writing myspace.com,63.135.90.70 to output
+It's IP address is: 217.69.139.200
+The first entry in the file is: cnet.com
+Writing mail.ru,217.69.139.200 to output
+It's IP address is: 140.205.220.96
+The first entry in the file is: bing.com
+Writing taobao.com,140.205.220.96 to output
+It's IP address is: 204.79.197.200
+The first entry in the file is: sina.com.cn
+Writing bing.com,204.79.197.200 to output
+It's IP address is: 202.108.33.60
+The first entry in the file is: soso.com
+Writing sina.com.cn,202.108.33.60 to output
+It's IP address is: 64.30.228.118
+The first entry in the file is: go.com
+Writing cnet.com,64.30.228.118 to output
+It's IP address is: 199.181.131.249
+The first entry in the file is: 4399.com
+Writing go.com,199.181.131.249 to output
+It's IP address is: 106.120.151.169
+The first entry in the file is: 163.com
+Writing soso.com,106.120.151.169 to output
+It's IP address is: 123.58.180.7
+The first entry in the file is: ask.com
+Writing 163.com,123.58.180.7 to output
+It's IP address is: 66.235.120.127
+The first entry in the file is: adobe.com
+Writing ask.com,66.235.120.127 to output
+It's IP address is: 192.150.16.117
+The first entry in the file is: twitter.com
+Writing adobe.com,192.150.16.117 to output
+It's IP address is: 118.184.184.70
+The first entry in the file is: orkut.com
+Writing 4399.com,118.184.184.70 to output
+It's IP address is: 199.59.149.198
+The first entry in the file is: mozilla.com
+Writing twitter.com,199.59.149.198 to output
+It's IP address is: 104.197.122.40
+The first entry in the file is: skype.com
+Writing orkut.com,104.197.122.40 to output
+It's IP address is: 63.245.213.24
+The first entry in the file is: youku.com
+Writing mozilla.com,63.245.213.24 to output
+It's IP address is: 40.115.34.155
+The first entry in the file is: ameblo.jp
+Writing skype.com,4Entered readFile
+Entered readFile
+Entered readFile
+Entered writeFile
+Entered writeFile
+The first entry in the file is: ifeng.com
+The first entry in the file is: amazon.com
+Entered writeFile
+The first entry in the file is: facebook.com
+Trying to join Resolver Threads
+Entered writeFile
+Entered writeFile
+It's IP address is: 54.239.17.6
+The first entry in the file is: wordpress.com
+Writing amazon.com,54.239.17.6 to output
+It's IP address is: 31.13.68.35
+The first entry in the file is: youtube.com
+Writing facebook.com,31.13.68.35 to output
+It's IP address is: 216.58.217.14
+The first entry in the file is: yahoo.com
+Writing youtube.com,216.58.217.14 to output
+It's IP address is: 98.139.183.24
+The first entry in the file is: live.com
+Writing yahoo.com,98.139.183.24 to output
+It's IP address is: 192.0.78.9
+The first entry in the file is: tudou.com
+Writing wordpress.com,192.0.78.9 to output
+It's IP address is: 65.55.206.154
+The first entry in the file is: wikipedia.org
+Writing live.com,65.55.206.154 to output
+It's IP address is: 208.80.153.224
+The first entry in the file is: msn.com
+Writing wikipedia.org,208.80.153.224 to output
+It's IP address is: 23.101.196.141
+The first entry in the file is: baidu.com
+Writing msn.com,23.101.196.141 to output
+It's IP address is: 220.181.57.217
+The first entry in the file is: blogspot.com
+Writing baidu.com,220.181.57.217 to output
+It's IP address is: 216.58.217.41
+The first entry in the file is: microsoft.com
+Writing blogspot.com,216.58.217.41 to output
+It's IP address is: 104.43.195.251
+The first entry in the file is: qq.com
+Writing microsoft.com,104.43.195.251 to output
+It's IP address is: 125.39.240.113
+The first entry in the file is: taobao.com
+Writing qq.com,125.39.240.113 to output
+It's IP address is: 210.51.19.63
+The first entry in the file is: goo.ne.jp
+Writing ifeng.com,210.51.19.63 to output
+It's IP address is: 140.205.220.96
+The first entry in the file is: bing.com
+Writing taobao.com,140.205.220.96 to output
+It's IP address is: 204.79.197.200
+The first entry in the file is: sina.com.cn
+Writing bing.com,204.79.197.200 to output
+It's IP address is: 123.126.98.147
+The first entry in the file is: yahoo.co.jp
+Writing tudou.com,123.126.98.147 to output
+It's IP address is: 183.79.135.206
+The first entry in the file is: sohu.com
+Writing yahoo.co.jp,183.79.135.206 to output
+It's IP address is: 153.254.147.65
+The first entry in the file is: bbc.co.uk
+Writing goo.ne.jp,153.254.147.65 to output
+It's IP address is: 212.58.246.78
+The first entry in the file is: yandex.ru
+Writing bbc.co.uk,212.58.246.78 to output
+It's IP address is: 77.88.55.66
+The first entry in the file is: myspace.com
+Writing yandex.ru,77.88.55.66 to output
+It's IP address is: 63.135.90.70
+The first entry in the file is: mail.ru
+Writing myspace.com,63.135.90.70 to output
+It's IP address is: 94.100.180.199
+The first entry in the file is: cnet.com
+Writing mail.ru,94.100.180.199 to output
+It's IP address is: 202.108.33.60
+The first entry in the file is: soso.com
+Writing sina.com.cn,202.108.33.60 to output
+It's IP address is: 64.30.228.118
+The first entry in the file is: go.com
+Writing cnet.com,64.30.228.118 to output
+It's IP address is: 220.181.90.20
+The first entry in the file is: apple.com
+Writing sohu.com,220.181.90.20 to output
+It's IP address is: 199.181.131.249
+The first entry in the file is: 4399.com
+Writing go.com,199.181.131.249 to output
+It's IP address is: 17.172.224.47
+The first entry in the file is: hao123.com
+Writing apple.com,17.172.224.47 to output
+It's IP address is: 106.120.151.169
+The first entry in the file is: 163.com
+Writing soso.com,106.120.151.169 to output
+It's IP address is: 123.58.180.8
+The first entry in the file is: ask.com
+Writing 163.com,123.58.180.8 to output
+It's IP address is: 66.235.120.127
+The first entry in the file is: adobe.com
+Writing ask.com,66.235.120.127 to output
+It's IP address is: 123.125.114.224
+The first entry in the file is: windows.com
+Writing hao123.com,123.125.114.224 to output
+It's IP address is: 118.184.184.70
+The first entry in the file is: orkut.com
+Writing 4399.com,118.184.184.Entered readFile
+Entered readFile
+Entered writeFile
+Entered readFile
+Entered writeFile
+Trying to join Resolver Threads
+Entered writeFile
+The first entry in the file is: amazon.com
+The first entry in the file is: ifeng.com
+The first entry in the file is: facebook.com
+It's IP address is: 31.13.95.36
+The first entry in the file is: youtube.com
+Writing facebook.com,31.13.95.36 to output
+It's IP address is: 210.51.19.63
+The first entry in the file is: goo.ne.jp
+Writing ifeng.com,210.51.19.63 to output
+It's IP address is: 54.239.17.7
+The first entry in the file is: wordpress.com
+Writing amazon.com,54.239.17.7 to output
+It's IP address is: 172.217.6.14
+The first entry in the file is: yahoo.com
+Writing youtube.com,172.217.6.14 to output
+It's IP address is: 98.138.253.109
+The first entry in the file is: live.com
+Writing yahoo.com,98.138.253.109 to output
+It's IP address is: 192.0.78.17
+The first entry in the file is: tudou.com
+Writing wordpress.com,192.0.78.17 to output
+It's IP address is: 65.55.206.154
+The first entry in the file is: wikipedia.org
+Writing live.com,65.55.206.154 to output
+It's IP address is: 123.126.98.149
+The first entry in the file is: yahoo.co.jp
+Writing tudou.com,123.126.98.149 to output
+It's IP address is: 208.80.153.224
+The first entry in the file is: msn.com
+Writing wikipedia.org,208.80.153.224 to output
+It's IP address is: 183.79.135.206
+The first entry in the file is: sohu.com
+Writing yahoo.co.jp,183.79.135.206 to output
+It's IP address is: 23.101.196.141
+The first entry in the file is: baidu.com
+Writing msn.com,23.101.196.141 to output
+It's IP address is: 180.149.132.47
+The first entry in the file is: blogspot.com
+Writing baidu.com,180.149.132.47 to output
+It's IP address is: 216.58.217.41
+The first entry in the file is: microsoft.com
+Writing blogspot.com,216.58.217.41 to output
+It's IP address is: 23.96.52.53
+The first entry in the file is: qq.com
+Writing microsoft.com,23.96.52.53 to output
+It's IP address is: 153.254.147.65
+The first entry in the file is: bbc.co.uk
+Writing goo.ne.jp,153.254.147.65 to output
+It's IP address is: 212.58.246.78
+The first entry in the file is: yandex.ru
+Writing bbc.co.uk,212.58.246.78 to output
+It's IP address is: 77.88.55.70
+The first entry in the file is: myspace.com
+Writing yandex.ru,77.88.55.70 to output
+It's IP address is: 61.135.157.156
+The first entry in the file is: taobao.com
+Writing qq.com,61.135.157.156 to output
+It's IP address is: 63.135.90.70
+The first entry in the file is: mail.ru
+Writing myspace.com,63.135.90.70 to output
+It's IP address is: 140.205.94.189
+The first entry in the file is: bing.com
+Writing taobao.com,140.205.94.189 to output
+It's IP address is: 94.100.180.199
+The first entry in the file is: cnet.com
+Writing mail.ru,94.100.180.199 to output
+It's IP address is: 204.79.197.200
+The first entry in the file is: sina.com.cn
+Writing bing.com,204.79.197.200 to output
+It's IP address is: 64.30.228.118
+The first entry in the file is: go.com
+Writing cnet.com,64.30.228.118 to output
+It's IP address is: 199.181.131.249
+The first entry in the file is: 4399.com
+Writing go.com,199.181.131.249 to output
+It's IP address is: 220.181.90.20
+The first entry in the file is: apple.com
+Writing sohu.com,220.181.90.20 to output
+It's IP address is: 17.178.96.59
+The first entry in the file is: hao123.com
+Writing apple.com,17.178.96.59 to output
+It's IP address is: 123.125.115.150
+The first entry in the file is: windows.com
+Writing hao123.com,123.125.115.150 to output
+It's IP address is: 191.239.213.197
+The first entry in the file is: ebay.com
+Writing windows.com,191.239.213.197 to output
+It's IP address is: 66.211.162.12
+The first entry in the file is: pps.tv
+Writing ebay.com,66.211.162.12 to output
+It's IP address is: 202.108.33.60
+The first entry in the file is: soso.com
+Writing sina.com.cn,202.108.33.60 to output
+It's IP address is: 118.184.184.70
+The first entry in the file is: orkut.com
+Writing 4399.com,118.184.184.70 to output
+It's IP address is: 104.197.122.40
+The first entry in the file is: skype.com
+Writing orkut.com,104.197.122.40 to output
+It's IP address is: 104.40.50.126
+The first entry in the file is: ameblo.jp
+Writing skype.com,104.40.50.126 to output
+It's IP address is: 58.83.190.154
+The first entry in the file is: xunlei.com
+Writing pps.tv,58.83.190.154 to output
+It's IP address is: 27.133.208.13
+The first entry in the file is: naver.com
+Writing ameblo.jp,27.133.208.13 to output
+It's IP address is: 125.209.222.142
+The first entry in the file is: flickr.com
+Writing naver.com,125.209.222.142 to output
+It's IP address is: 106.120.151.169
+The first entry in the file is: 163.com
+Writing soso.com,106.120.151.169 to output
+It's IP address is: 69.147.76.173
+The first entry in the file is: 4shared.com
+Writing flickr.com,69.147.76.173 to output
+It's IP address is: 123.58.180.8
+The first entry in the file is: ask.com
+Writing 163.com,123.58.180.8 to output
+It's IP address is: 204.155.149.38
+The first entry in the file is: amazon.co.jp
+Writing 4shared.com,204.155.149.38 to output
+It's IP address is: 54.240.250.0
+The first entry in the file is: linkedin.com
+Writing amazon.co.jp,54.240.250.0 to output
+It's IP address is: 108.174.10.10
+The first entry in the file is: dailymotion.com
+Writing linkedin.com,108.174.10.10 to output
+It's IP address is: 66.235.120.127
+The first entry in the file is: adobe.com
+Writing ask.com,66.235.120.127 to output
+It's IP address is: 195.8.215.136
+The first entry in the file is: imdb.com
+Writing dailymotion.com,195.8.215.136 to output
+It's IP address is: 192.150.16.117
+The first entry in the file is: twitter.com
+Writing adobe.com,192.150.16.117 to output
+It's IP address is: 72.21.206.80
+The first entry in the file is: aol.com
+Writing imdb.com,72.21.206.80 to output
+It's IP address is: 199.59.149.198
+The first entry in the file is: mozilla.com
+Writing twitter.com,199.59.149.198 to output
+It's IP address is: 149.174.110.102
+finished reading in file
+Writing aol.com,149.174.110.102 to output
+It's IP address is: 63.245.213.24
+The first entry in the file is: youku.com
+Writing mozilla.com,63.245.213.24 to output
+It's IP address is: 101.227.10.19
+The first entry in the file is: sdjjdsaf.com
+Writing youku.com,101.227.10.19 to output
+It's IP address is: 119.188.108.240
+The first entry in the file is: 56.com
+Writing xunlei.com,119.188.108.240 to output
+It's IP address is: 
+The first entry in the file is: andysayler.com
+Writing sdjjdsaf.com, to output
+It's IP address is: 162.243.49.20
+The first entry in the file is: wmfo.org
+Writing andysayler.com,162.243.49.20 to output
+It's IP address is: 23.92.21.128
+finished reading in file
+Writing wmfo.org,23.92.21.128 to output
+Resolver Thread 0 joined
+Trying to join Resolver Threads
+It's IP address is: 101.227.173.126
+The first entry in the file is: fc2.com
+Writing 56.com,101.227.173.126 to output
+It's IP address is: 54.187.26.65
+The first entry in the file is: paypal.com
+Writing fc2.com,54.187.26.65 to output
+It's IP address is: 64.4.250.23
+The first entry in the file is: sogou.com
+Writing paypal.com,64.4.250.23 to output
+It's IP address is: 118.191.216.42
+The first entry in the file is: tmall.com
+Writing sogou.com,118.191.216.42 to output
+It's IP address is: 140.205.130.99
+The first entry in the file is: ku6.com
+Writing tmall.com,140.205.130.99 to output
+It's IP address is: 122.11.45.243
+The first entry in the file is: rakuten.co.jp
+Writing ku6.com,122.11.45.243 to output
+It's IP address is: 133.237.48.124
+The first entry in the file is: about.com
+Writing rakuten.co.jp,133.237.48.124 to output
+It's IP address is: 207.241.148.80
+The first entry in the file is: orkut.com.br
+Writing about.com,207.241.148.80 to output
+It's IP address is: 
+finished reading in file
+Writing orkut.com.br, to output
+Resolver Thread 1 joined
+Trying to join Resolver Threads
+Resolver Thread 2 joined
+Requester threads terminated
+finished writing to file
+finished writing to file
+finished writing to file
+Trying to join Resolver Threads
+Trying to join Resolver Threads
+Trying to join Resolver Threads

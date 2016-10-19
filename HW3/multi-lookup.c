@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <time.h>
 
 #include "util.h"
 #include "queue.h"
@@ -15,13 +16,15 @@
 #define USAGE "<inputFilePath> <outputFilePath>"
 #define QUEUE_MAX 100
 
-#define NUM_THREADS	5
+#define NUM_THREADS	3
 
 // Global variables defined
 queue q;
 char debug = 0;
+char exit_write = 0;
 pthread_mutex_t queue_access;
 pthread_mutex_t output_file_access;
+pthread_mutex_t terminate_ok;
 pthread_cond_t queue_full;
 
 typedef struct {
@@ -36,33 +39,87 @@ void *writeFile(void* output_file_ptr) {
 	if (debug) {
 		printf("Entered writeFile\n");
 	}
-	
-	
+	char still_running = 1;
 	FILE* outputfp = (FILE *) output_file_ptr;
 	
-	Map_IP *full_info = NULL;
+	while(still_running) {
+		
+		static struct timespec time_to_wait = {0,0};
+		time_to_wait.tv_sec = time(NULL) + 10;
+		Map_IP *full_info = NULL;
+		
+		
+		// Get element from queue
+		pthread_mutex_lock(&queue_access);
+		
+		pthread_mutex_lock(&terminate_ok);
+		still_running = !exit_write;
+		pthread_mutex_unlock(&terminate_ok);
 	
-	// Get element from queue
-	pthread_mutex_lock(&queue_access);
-	
-	// Queue is empty
-	while (queue_is_empty(&q)) {
-		pthread_cond_wait(&queue_full, &queue_access);
-	}
-	
-	full_info = queue_pop(&q); 
-	
-	pthread_mutex_unlock(&queue_access);
-	
-	
-	// Write to output file
-	pthread_mutex_lock(&output_file_access);
-	
-	fprintf(outputfp, "%s,%s\n", full_info->hostname, full_info->firstipstr);
-	
-	pthread_mutex_unlock(&output_file_access);
-	
-	free(full_info);
+		// Queue is empty
+		while (queue_is_empty(&q) && still_running) {
+			
+			
+			pthread_mutex_lock(&terminate_ok);
+
+			still_running = !exit_write;
+			
+			pthread_mutex_unlock(&terminate_ok);
+			if (still_running) {
+				pthread_cond_timedwait(&queue_full, &queue_access, &time_to_wait);
+			}
+		}
+		
+		// The queue is not empty
+		if (still_running && !queue_is_empty(&q)) {
+			full_info = queue_pop(&q); 
+			
+			//pthread_mutex_unlock(&queue_access);
+		
+			// Write to output file
+			pthread_mutex_lock(&output_file_access);
+			//printf("Entered output file critical section\n");
+			
+			if (debug) {
+				printf("Writing %s,%s to output\n", full_info->hostname, full_info->firstipstr); 
+			}
+			
+			fprintf(outputfp, "%s,%s\n", full_info->hostname, full_info->firstipstr);
+			
+			pthread_mutex_unlock(&output_file_access);
+			//printf("Released output file semaphore\n");
+			
+			free(full_info);
+		}
+		else if (!still_running && !queue_is_empty(&q)) {
+			while(!queue_is_empty(&q)) {
+				full_info = queue_pop(&q); 
+			
+				// Write to output file
+				pthread_mutex_lock(&output_file_access);
+				//printf("Entered output file critical section in while loop\n");
+				
+				
+				if (debug) {
+					printf("Writing %s,%s to output (while)\n", full_info->hostname, full_info->firstipstr); 
+				}
+				fprintf(outputfp, "%s,%s\n", full_info->hostname, full_info->firstipstr);
+				
+				pthread_mutex_unlock(&output_file_access);
+				//printf("Released output file semaphore in while loop\n");
+				
+				free(full_info);
+			}
+			//pthread_mutex_unlock(&queue_access);
+		}
+		else {
+			//pthread_mutex_unlock(&queue_access);
+		}	
+		
+		pthread_mutex_unlock(&queue_access);
+		pthread_cond_signal(&queue_full);
+		//printf("Unlocked queue_access\n");
+	} 
 	
 	if (debug) {
 		printf("finished writing to file\n");
@@ -178,22 +235,42 @@ int main(int argc, char *argv[])
 		if (rc) {
 			printf("ERROR; return code from pthread_create() is %d\n", rc);
 			exit(EXIT_FAILURE);
-		}
-		
-		// Create Resolver Threads
-		rc = pthread_create(&(resolver_threads[i-1]), NULL, writeFile, (void *) outputfp);
+		}		
+	}
+	
+	// Create Resolver Threads
+	for (i = 0; i < NUM_THREADS; i++)  {
+		rc = pthread_create(&(resolver_threads[i]), NULL, writeFile, (void *) outputfp);
 		if (rc) {
 			printf("ERROR; return code from pthread_create() is %d\n", rc);
 			exit(EXIT_FAILURE);
 		}
-		
 	}
 	
-	 // All threads have finished executing
+	 // All Requester Threads have finished executing
 	for (i = 0; i < argc-2; i++) {
+		//printf("Trying to join Resolver Threads\n");
 		pthread_join(requester_threads[i], NULL);
-		pthread_join(resolver_threads[i], NULL);
 		fclose(inputfp[i]);
+		if (debug) {
+			printf("Resolver Thread %d joined\n", i);
+		}
+	}
+	
+	if (debug) {
+		printf("Requester threads terminated\n");	
+	}
+	
+	pthread_mutex_lock(&terminate_ok);
+	
+	exit_write = 1;
+	
+	pthread_mutex_unlock(&terminate_ok);
+	pthread_cond_broadcast(&queue_full);
+	
+	// All Resolver Threads have finished executing
+	for (i = 0; i < NUM_THREADS; i++) {
+		pthread_join(resolver_threads[i], NULL);
 	}
    
 	// Clean memory
