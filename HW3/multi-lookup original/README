@@ -1,0 +1,24 @@
+CSCI 3573 Programming Assignment 3
+Using Pthreads to ode a DNS name resolution engine
+Author: Shane Sarnac
+
+Files:
+	multi-lookup.c
+	multi-lookup.h
+	queue.c 
+	queue.h
+	util.c
+	util.h
+	Makefile
+
+To Build Multi-Lookup
+	make
+	
+To Clearn Directory of unnecessary files
+	make clean
+	
+To run program:
+	./multi_lookup <input_files.txt> <output_files.txt>
+	
+
+

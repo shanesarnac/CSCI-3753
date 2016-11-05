@@ -1,0 +1,29 @@
+Author: Shane Sarnac
+Email: shane.sarnac@colorado.edu
+Student ID: 102338579
+Class: CSCI 3753 Operating Systems
+Assignment: HW1 - Adding a System Call
+Date: 9/7/2016
+
+homework1.c 
+This file contains the source code for steps 6 and 7, calling both 
+sys_helloworld and sys_simple_add. This file exists in the user space
+but calls a system function. 
+
+Makefile
+This file contains the commands for building the kernel's system calls. 
+Includes the build instructions for building hello_world.c and 
+simple_add.c. 
+
+syscall_64.tbl
+This file contains each entry in the system call table. The sys_helloworld
+system call is listed at entry 326 while the sys_simple_add system call
+is listed at entry 327. 
+
+syscalls.h
+This file lists the functions associated with the functions of matching
+names in the system call table.
+
+simple_add.c
+This file defines the sys_simple_add function associated with the listing
+in the syscalls.h file. 
