@@ -69,7 +69,7 @@ int main(int argc, char* argv[]){
     piCalc = pCircle * 4.0;
 
     /* Print result */
-    fprintf(stdout, "pi = %f\n", piCalc);
+    //fprintf(stdout, "pi = %f\n", piCalc);
 
     return 0;
 }

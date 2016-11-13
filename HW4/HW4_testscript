@@ -1,0 +1,99 @@
+#/!/bin/bash
+
+#File: testscript
+#Author: Shane Sarnac
+#Project: CSCI 3753 Programming Assignment 4
+#Create Date: 11/12/2016
+
+HEADER="Schedule, Wall Clock Time (sec), Total User Mode CPU Seconds, Total Kernel Mode CPU Seconds, CPU Percentage, Total Non-Voluntary Context Switches, Total Voluntary Context Switches"
+TIMEFORMAT1="SCHED_OTHER, %e, %U, %S, %P, %c, %w"
+TIMEFORMAT2="SCHED_FIFO, %e, %U, %S, %P, %c, %w"
+TIMEFORMAT3="SCHED_RR, %e, %U, %S, %P, %c, %w"
+
+SIMULATIONS_LOW="10"
+SIMULATIONS_MEDIUM="50"
+SIMULATIONS_HIGH="500"
+
+CPU_INTENSIVE="CPU"
+IO_INTENSIVE="IO"
+MIXED_INTENSIVE="MIXED"
+
+RAND="RAND"
+
+#MAKE="make -s"
+#
+#$MAKE clean
+#$MAKE
+
+make clean
+make
+
+echo "$HEADER"
+# CPU Bound Tests
+echo CPU Bound Tests
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_LOW" "$CPU_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_LOW" "$CPU_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE" 
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_HIGH" "$CPU_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_HIGH" "$CPU_INTENSIVE" "$RAND"
+
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_LOW" "$CPU_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_LOW" "$CPU_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_HIGH""$CPU_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_HIGH""$CPU_INTENSIVE" "$RAND"
+
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_LOW" "$CPU_INTENSIVE" 
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_LOW" "$CPU_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_HIGH" "$CPU_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_HIGH" "$CPU_INTENSIVE" "$RAND"
+
+# IO Bound Tests
+echo IO Bound Tests
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_LOW" "$IO_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_LOW" "$IO_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE" 
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_HIGH" "$IO_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_HIGH" "$IO_INTENSIVE" "$RAND"
+
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_LOW" "$IO_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_LOW" "$IO_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_HIGH""$IO_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_HIGH""$IO_INTENSIVE" "$RAND"
+
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_LOW" "$IO_INTENSIVE" 
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_LOW" "$IO_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_HIGH" "$IO_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_HIGH" "$IO_INTENSIVE" "$RAND"
+
+# Mixed Tests
+echo Mixed Tests
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_LOW" "$MIXED_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_LOW" "$MIXED_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_MEDIUM" "$MIXED_INTENSIVE" 
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_MEDIUM" "$MIXED_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_HIGH" "$MIXED_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_HIGH" "$MIXED_INTENSIVE" "$RAND"
+
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_LOW" "$MIXED_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_LOW" "$MIXED_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_MEDIUM" "$MIXED_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_MEDIUM" "$MIXED_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_HIGH""$MIXED_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_HIGH""$MIXED_INTENSIVE" "$RAND"
+
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_LOW" "$MIXED_INTENSIVE" 
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_LOW" "$MIXED_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_MEDIUM" "$MIXED_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_MEDIUM" "$MIXED_INTENSIVE" "$RAND"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_HIGH" "$MIXED_INTENSIVE"
+/usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_HIGH" "$MIXED_INTENSIVE" "$RAND"

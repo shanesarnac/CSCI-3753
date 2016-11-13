@@ -2,9 +2,11 @@
  * File: rw.c
  * Author: Andy Sayler
  * Revised: Shivakant Mishra
+ * Modified: Shane Sarnac
  * Project: CSCI 3753 Programming Assignment 4
  * Create Date: 2012/30/10
- * Modify Date: 2016/30/10
+ * Revised Date: 2016/30/10
+ * Modified Date: 11/12/2016
  * Description: A small i/o bound program to copy N bytes from an input
  *              file to an output file. May read the input file multiple
  *              times if N is larger than the size of the input file.
@@ -25,8 +27,8 @@
 
 /* Local Defines */
 #define MAXFILENAMELENGTH 80
-#define DEFAULT_INPUTFILENAME "rwinput"
-#define DEFAULT_OUTPUTFILENAMEBASE "rwoutput"
+#define DEFAULT_INPUTFILENAME "/dev/urandom"
+#define DEFAULT_OUTPUTFILENAMEBASE "/dev/null"
 #define DEFAULT_BLOCKSIZE 1024
 #define DEFAULT_TRANSFERSIZE 1024*100
 
@@ -150,8 +152,8 @@ int main(int argc, char* argv[]){
     }
 
     /* Print Status */
-    fprintf(stdout, "Reading from %s and writing to %s\n",
-	    inputFilename, outputFilename);
+    //fprintf(stdout, "Reading from %s and writing to %s\n",
+	//    inputFilename, outputFilename);
 
     /* Read from input file and write to output file*/
     do{
@@ -190,14 +192,14 @@ int main(int argc, char* argv[]){
     }while(totalBytesWritten < transfersize);
 
     /* Output some possibly helpfull info to make it seem like we were doing stuff */
-    fprintf(stdout, "Read:    %zd bytes in %d reads\n",
-	    totalBytesRead, totalReads);
-    fprintf(stdout, "Written: %zd bytes in %d writes\n",
-	    totalBytesWritten, totalWrites);
-    fprintf(stdout, "Read input file in %d pass%s\n",
-	    (inputFileResets + 1), (inputFileResets ? "es" : ""));
-    fprintf(stdout, "Processed %zd bytes in blocks of %zd bytes\n",
-	    transfersize, blocksize);
+    //fprintf(stdout, "Read:    %zd bytes in %d reads\n",
+	    //totalBytesRead, totalReads);
+    //fprintf(stdout, "Written: %zd bytes in %d writes\n",
+	    //totalBytesWritten, totalWrites);
+    //fprintf(stdout, "Read input file in %d pass%s\n",
+	    //(inputFileResets + 1), (inputFileResets ? "es" : ""));
+    //fprintf(stdout, "Processed %zd bytes in blocks of %zd bytes\n",
+	    //transfersize, blocksize);
 	
     /* Free Buffer */
     free(transferBuffer);
