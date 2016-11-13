@@ -68,6 +68,8 @@ int main(int argc, char* argv[]) {
 		processes = TOTAL_PROCESSES;
 	}
 	
+	//printf("processes = %d\n", processes);
+	
 	if (argc > 3) {
 		if (debug) {
 			printf("Third argument: %s\n", argv[3]);
@@ -201,6 +203,9 @@ int main(int argc, char* argv[]) {
 		if (debug) {
 			printf("Mixed process\n");
 		}
+		
+		char *const *args = {NULL};
+		execv("mixed", args);
 	}
 	else {
 		if (debug) {
@@ -216,6 +221,8 @@ int main(int argc, char* argv[]) {
 	if (debug) {
 		printf("Exiting program");
 	}
+	
+	printf("\n");
 	
 	return 0;
 }

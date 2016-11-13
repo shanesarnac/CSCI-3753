@@ -7,9 +7,9 @@
  * Create Date: 2012/30/10
  * Revised Date: 2016/30/10
  * Modified Date: 11/12/2016
- * Description: A small i/o bound program to copy N bytes from an input
- *              file to an output file. May read the input file multiple
- *              times if N is larger than the size of the input file.
+ * Description: A combination of the IO-bound program rw and 
+ * 				the Compute-bound program pi aimed to simulate
+ * 				a mixed process
  */
 
 /* Include Flags */
@@ -24,6 +24,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <math.h>
 
 /* Local Defines */
 #define MAXFILENAMELENGTH 80
@@ -31,6 +32,47 @@
 #define DEFAULT_OUTPUTFILENAMEBASE "/dev/null"
 #define DEFAULT_BLOCKSIZE 1024
 #define DEFAULT_TRANSFERSIZE 1024*100
+#define DEFAULT_ITERATIONS 1000000
+#define RADIUS (RAND_MAX / 2)
+
+/* Local Functions */
+inline double dist(double x0, double y0, double x1, double y1){
+    return sqrt(pow((x1-x0),2) + pow((y1-y0),2));
+}
+
+inline double zeroDist(double x, double y){
+    return dist(0, 0, x, y);
+}
+
+double calc_pi() {
+	//printf("Calculating Pi\n");
+	long i;
+    long iterations;
+    double x, y;
+    double inCircle = 0.0;
+    double inSquare = 0.0;
+    double pCircle = 0.0;
+    double piCalc = 0.0;
+
+    /* iterations = DEFAULT_ITERATIONS */
+	iterations = DEFAULT_ITERATIONS;
+
+    /* Calculate pi using statistical methode across all iterations*/
+    for(i=0; i<iterations; i++){
+		x = (random() % (RADIUS * 2)) - RADIUS;
+		y = (random() % (RADIUS * 2)) - RADIUS;
+		if(zeroDist(x,y) < RADIUS){
+		    inCircle++;
+		}
+		inSquare++;
+    }
+
+    /* Finish calculation */
+    pCircle = inCircle/inSquare;
+    piCalc = pCircle * 4.0;
+	
+	return piCalc*0.0;
+}
 
 int main(int argc, char* argv[]){
 
@@ -168,7 +210,14 @@ int main(int argc, char* argv[]){
 		    totalReads++;
 		}
 		
+		
+		
+		/* Calculate digits of pi */
+		calc_pi();
+		
+		
 		/* If all bytes were read, write to output file*/
+		// Now write to file
 		if(bytesRead == blocksize){
 		    bytesWritten = write(outputFD, transferBuffer, bytesRead);
 		    if(bytesWritten < 0){
@@ -218,3 +267,4 @@ int main(int argc, char* argv[]){
 
     return EXIT_SUCCESS;
 }
+
