@@ -20,6 +20,9 @@ enum Process_Type {
 };
 
 int main(int argc, char* argv[]) {
+	
+	//printf("\n");
+	
 	if (debug) {
 		printf("HW4 Tests Initiated\n");
 		printf("argc = %d\n", argc);
@@ -119,7 +122,8 @@ int main(int argc, char* argv[]) {
 		srand((unsigned) time(&t));
 		
 		for (i = 0; i < processes; i++) {
-		    param.sched_priority = rand()%(priority_max - priority_min) + 1;
+		    param.sched_priority = rand()%(priority_max - priority_min + 1) + 1;
+		    //printf("param.sched_priority = %d\n", param.sched_priority);
 		    if(sched_setscheduler(0, policy, &param)){
 				perror("Error setting scheduler policy");
 				exit(EXIT_FAILURE);
@@ -221,8 +225,6 @@ int main(int argc, char* argv[]) {
 	if (debug) {
 		printf("Exiting program");
 	}
-	
-	printf("\n");
 	
 	return 0;
 }
