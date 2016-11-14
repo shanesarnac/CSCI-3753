@@ -28,10 +28,17 @@ RAND="RAND"
 make clean
 make
 
-echo "$HEADER" > data.csv
+echo "$HEADER" > mixed_tests.csv
 
-./CPU_bound_tests
-./IO_bound_tests
+#./CPU_bound_tests
+#./CPU_bound_tests
+#./CPU_bound_tests
+
+#./IO_bound_tests
+#./IO_bound_tests
+#./IO_bound_tests
+./mixed_tests
+./mixed_tests
 ./mixed_tests
 
 echo Tests completed

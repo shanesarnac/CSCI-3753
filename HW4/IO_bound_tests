@@ -4,7 +4,7 @@ TIMEFORMAT3="SCHED_RR, %e, %U, %S, %P, %c, %w"
 
 SIMULATIONS_LOW="10"
 SIMULATIONS_MEDIUM="50"
-SIMULATIONS_HIGH="100"
+SIMULATIONS_HIGH="500"
 
 CPU_INTENSIVE="CPU"
 IO_INTENSIVE="IO"
@@ -14,79 +14,79 @@ RAND="RAND"
 
 # IO Bound Tests
 echo IO Bound Tests
-echo IO Bound Test with "$SIMULATIONS_LOW" Simulations and Uniform Priorities
+echo "$SIMULATIONS_LOW", 0, IO
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_LOW" "$IO_INTENSIVE"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_LOW" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_LOW", 1, IO
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_LOW" "$IO_INTENSIVE" "$RAND"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 0, IO
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE" 
 echo
 
-echo IO Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 1, IO
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE" "$RAND"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_HIGH" Simulations and Uniform Priorities
+echo "$SIMULATIONS_HIGH", 0, IO
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_HIGH" "$IO_INTENSIVE"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_HIGH" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_HIGH", 1, IO
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_HIGH" "$IO_INTENSIVE" "$RAND"
 echo
 
 
 
-echo IO Bound Test with "$SIMULATIONS_LOW" Simulations and Uniform Priorities
+echo "$SIMULATIONS_LOW", 0, IO
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_LOW" "$IO_INTENSIVE"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_LOW" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_LOW", 1, IO
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_LOW" "$IO_INTENSIVE" "$RAND"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 0, IO
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 1, IO
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE" "$RAND"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_HIGH" Simulations and Uniform Priorities
+echo "$SIMULATIONS_HIGH", 0, IO
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_HIGH" "$IO_INTENSIVE"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_HIGH" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_HIGH", 1, IO
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_HIGH" "$IO_INTENSIVE" "$RAND"
 echo
 
 
 
-echo IO Bound Test with "$SIMULATIONS_LOW" Simulations and Uniform Priorities
+echo "$SIMULATIONS_LOW", 0, IO
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_LOW" "$IO_INTENSIVE" 
 echo
 
-echo IO Bound Test with "$SIMULATIONS_LOW" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_LOW", 1, IO
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_LOW" "$IO_INTENSIVE" "$RAND"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 0, IO
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 1, IO
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_MEDIUM" "$IO_INTENSIVE" "$RAND"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_HIGH" Simulations and Uniform Priorities
+echo "$SIMULATIONS_HIGH", 0, IO
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_HIGH" "$IO_INTENSIVE"
 echo
 
-echo IO Bound Test with "$SIMULATIONS_HIGH" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_HIGH", 1, IO
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_HIGH" "$IO_INTENSIVE" "$RAND"
 echo
 

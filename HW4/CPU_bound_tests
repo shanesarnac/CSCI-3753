@@ -4,7 +4,7 @@ TIMEFORMAT3="SCHED_RR, %e, %U, %S, %P, %c, %w"
 
 SIMULATIONS_LOW="10"
 SIMULATIONS_MEDIUM="50"
-SIMULATIONS_HIGH="100"
+SIMULATIONS_HIGH="500"
 
 CPU_INTENSIVE="CPU"
 IO_INTENSIVE="IO"
@@ -15,77 +15,77 @@ RAND="RAND"
 # CPU Bound Tests
 echo CPU Bound Tests
 
-echo CPU Bound Test with "$SIMULATIONS_LOW" Simulations and Uniform Priorities
+echo "$SIMULATIONS_LOW", 0, CPU
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_LOW" "$CPU_INTENSIVE"
 echo 
 
-echo CPU Bound Test with "$SIMULATIONS_LOW" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_LOW", 1, CPU
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_LOW" "$CPU_INTENSIVE" "$RAND"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 0, CPU
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE" 
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 1, CPU
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE" "$RAND"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_HIGH" Simulations and Uniform Priorities
+echo "$SIMULATIONS_HIGH", 0, CPU
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_HIGH" "$CPU_INTENSIVE"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_HIGH" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_HIGH", 1, CPU
 /usr/bin/time -f "$TIMEFORMAT1" sudo ./test SCHED_OTHER "$SIMULATIONS_HIGH" "$CPU_INTENSIVE" "$RAND"
 echo
 
 
-echo CPU Bound Test with "$SIMULATIONS_LOW" Simulations and Uniform Priorities
+echo "$SIMULATIONS_LOW", 0, CPU
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_LOW" "$CPU_INTENSIVE"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_LOW" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_LOW", 1, CPU
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_LOW" "$CPU_INTENSIVE" "$RAND"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 0, CPU
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 1, CPU
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE" "$RAND"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_HIGH" Simulations and Uniform Priorities
+echo "$SIMULATIONS_HIGH", 0, CPU
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_HIGH" "$CPU_INTENSIVE"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_HIGH" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_HIGH", 1, CPU
 /usr/bin/time -f "$TIMEFORMAT2" sudo ./test SCHED_FIFO "$SIMULATIONS_HIGH" "$CPU_INTENSIVE" "$RAND"
 echo
 
 
-echo CPU Bound Test with "$SIMULATIONS_LOW" Simulations and Uniform Priorities
+echo "$SIMULATIONS_LOW", 0, CPU
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_LOW" "$CPU_INTENSIVE" 
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_LOW" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_LOW", 1, CPU
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_LOW" "$CPU_INTENSIVE" "$RAND"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 0, CPU
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_MEDIUM" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_MEDIUM", 1, CPU
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_MEDIUM" "$CPU_INTENSIVE" "$RAND"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_HIGH" Simulations and Uniform Priorities
+echo "$SIMULATIONS_HIGH", 0, CPU
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_HIGH" "$CPU_INTENSIVE"
 echo
 
-echo CPU Bound Test with "$SIMULATIONS_HIGH" Simulations and Non-Uniform Priorities
+echo "$SIMULATIONS_HIGH", 1, CPU
 /usr/bin/time -f "$TIMEFORMAT3" sudo ./test SCHED_RR "$SIMULATIONS_HIGH" "$CPU_INTENSIVE" "$RAND"
 echo
 
