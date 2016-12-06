@@ -16,22 +16,33 @@ LLIBSOPENSSL = -lcrypto
 
 CFLAGS = -c -g -Wall -Wextra
 LFLAGS = -g -Wall -Wextra
- 
-PA5_ENCFS = pa5-encfs
+
+FUSE_EXAMPLES = fusehello fusexmp 
+XATTR_EXAMPLES = xattr-util
+OPENSSL_EXAMPLES = aes-crypt-util 
 
 .PHONY: all fuse-examples xattr-examples openssl-examples clean
 
 all: pa5-encfs
 
-pa5-encfs: pa5-encfs.o
-	$(CC) $(CLAGS) $^ -o $@ $(LLIBSFUSE)
+
+pa5-encfs: pa5-encfs.o aes-crypt.o
+	$(CC) $(LFLAGS) $^ -o $@ $(LLIBSFUSE) $(LLIBSOPENSSL)
+
 
 pa5-encfs.o: pa5-encfs.c
 	$(CC) $(CFLAGS) $(CFLAGSFUSE) $<
 
+
+aes-crypt.o: aes-crypt.c aes-crypt.h
+	$(CC) $(CFLAGS) $<
+
 clean:
+	rm pa5-encfs
 	rm -f *.o
 	rm -f *~
+
+
 
 
 
