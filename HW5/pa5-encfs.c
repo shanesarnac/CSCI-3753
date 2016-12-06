@@ -32,6 +32,9 @@
 #ifdef linux
 /* For pread()/pwrite() */
 #define _XOPEN_SOURCE 500
+#define ENCRYPT 1
+#define DECRYPT 0
+#define PASS_THROUGH -1
 #endif
 
 #include <fuse.h>
@@ -47,18 +50,38 @@
 #include <sys/xattr.h>
 #endif
 
+#include "aes-crypt.h"
+
 char debug = 0;
-char * root_dir = NULL;
+char * mirror_dir = NULL;
+char * mount_point = NULL;
+char * key_phrase = NULL;
+const char * log_file_path = "/media/storage/Documents/College/Computer Programming/CSCI-3753/HW5/Test/logfile.txt";
+
+// returns 1 if the file at file_location has a user.encfs attribute set to true
+// returns 0 otherwise
+char is_encrypted(const char* file_location) {
+	char file_attributes[5];
+	getxattr(file_location, "user.encfs", file_attributes, 5*sizeof(char));
+	
+	return (strcmp(file_attributes, "true") == 0);
+}
+
+// returns 1 if encryption attribute is successfully set, 0 otherwise
+char set_encryption_attr(const char* file_location) {
+	return !setxattr(file_location, "user.encfs", "true", 5*sizeof(char), 0);
+}
+
 
 char* absolute_path(const char* original_path) {
 	if (debug) {
 		printf("Entering absolute_path\n");
 	}
 	
-	size_t len = strlen(original_path) + strlen(root_dir) + 1;
+	size_t len = strlen(original_path) + strlen(mirror_dir) + 1;
 	char * root_path = malloc(len*sizeof(char));
 	
-	strcpy(root_path, root_dir);
+	strcpy(root_path, mirror_dir);
 	strcat(root_path, original_path);
 	
 	return root_path;
@@ -125,7 +148,6 @@ static int pa5_encfs_readdir(const char *path, void *buf, fuse_fill_dir_t filler
 	}
 	
 	char * full_path = absolute_path(path);
-	printf("full_path = %s\n", full_path);
 	
 	DIR *dp;
 	struct dirent *de;
@@ -371,46 +393,135 @@ static int pa5_encfs_read(const char *path, char *buf, size_t size, off_t offset
 		printf("Entering pa5_encfs_read\n");
 	}
 	
-	char* full_path = absolute_path(path);
-	
-	int fd;
-	int res;
-
 	(void) fi;
-	fd = open(full_path, O_RDONLY);
-	if (fd == -1)
-		return -errno;
-
-	res = pread(fd, buf, size, offset);
-	if (res == -1)
-		res = -errno;
-
-	close(fd);
+	char* full_path = absolute_path(path);
+	int res, encryption_action;
+	
+	FILE *read_file, *temp_file;
+	read_file = fopen(full_path, "r");
+	temp_file = tmpfile();
+	
+	
+	if (is_encrypted(full_path) == 1) {
+		encryption_action = DECRYPT;
+	}
+	else {
+		encryption_action = PASS_THROUGH;
+	}
+	
+	if(!do_crypt(read_file, temp_file, encryption_action, key_phrase)) {
+		fprintf(stderr, "Unable to decrypt file\n");
+		return errno;
+	}
+	
+	fflush(temp_file);
+	fseek(temp_file, offset, SEEK_SET);
+	
+	res = fread(buf, 1, size, temp_file);
+	if (res < 0) {
+		fprintf(stderr, "Unable to read file\n");
+		res = errno;
+	}
+	
+	fclose(temp_file);
+	fclose(read_file);
+	
+	
 	return res;
 }
 
 static int pa5_encfs_write(const char *path, const char *buf, size_t size,
 		     off_t offset, struct fuse_file_info *fi)
 {
+	/*(void) fi;
+	FILE *path_ptr, *tmpf;
+	char *full_path;
+	int res, action;
+	int tmpf_descriptor;
+
+	full_path = absolute_path(path);
+	path_ptr = fopen(full_path, "r+");
+	tmpf = tmpfile();
+	tmpf_descriptor = fileno(tmpf);
+
+
+	// Something went terribly wrong if this is the case. 
+	if (path_ptr == NULL || tmpf == NULL)
+		return -errno;
+	
+	fseek(path_ptr, 0, SEEK_END);
+	int length = ftell(path_ptr);
+	fseek(path_ptr, 0, SEEK_SET);
+
+	// if the file to write to exists, read it into the tempfile 
+	if (access(path, R_OK) == 0 && length > 0) {
+		action = is_encrypted(full_path) ? DECRYPT : PASS_THROUGH;
+		if (do_crypt(path_ptr, tmpf, action, key_phrase) == 0)
+			return --errno;
+
+		rewind(path_ptr);
+		rewind(tmpf);
+	}
+
+	// Read our tmpfile into the buffer.
+	res = pwrite(tmpf_descriptor, buf, size, offset);
+	if (res == -1)
+		res = -errno;
+
+	// Either encrypt, or just move along. 
+	action = is_encrypted(path) ? ENCRYPT : PASS_THROUGH;
+
+	if (do_crypt(tmpf, path_ptr, action, key_phrase) == 0)
+		return -errno;
+
+	fclose(tmpf);
+	fclose(path_ptr);
+
+	return res; */
+	
 	if (debug) {
 		printf("Entering pa5_encfs_write\n");
 	}
 	
-	int fd;
-	int res;
-	
-	char* full_path = absolute_path(path);
-
 	(void) fi;
-	fd = open(full_path, O_WRONLY);
-	if (fd == -1)
-		return -errno;
-
-	res = pwrite(fd, buf, size, offset);
-	if (res == -1)
-		res = -errno;
-
-	close(fd);
+	int res, encryption_action;
+	char* full_path = absolute_path(path);
+	
+	FILE * write_file, *temp_file;
+	write_file = fopen(full_path, "w+");
+	temp_file = tmpfile();
+	
+	if (is_encrypted(full_path)) {
+		encryption_action = DECRYPT;
+	}
+	else {
+		encryption_action = PASS_THROUGH;
+	}
+	
+	if(!do_crypt(write_file, temp_file, encryption_action, key_phrase)) {
+		fprintf(stderr, "Could not decrypt file\n");
+		return errno;
+	}
+	
+	fseek(temp_file, offset, SEEK_SET);
+	
+	res = fwrite(buf, 1, size, temp_file);
+	if (res < 0) {
+		fprintf(stderr, "Unable to write to file\n");
+		return errno;
+	}
+	
+	fseek(temp_file, offset, SEEK_SET);
+	fseek(write_file, offset, SEEK_SET);
+	
+	if(!do_crypt(temp_file, write_file, encryption_action, key_phrase)) {
+		fprintf(stderr, "Could not write to file\n");
+		return errno;
+	}
+	
+	fclose(write_file);
+	fclose(temp_file);
+	
 	return res;
 }
 
@@ -438,19 +549,32 @@ static int pa5_encfs_create(const char* path, mode_t mode, struct fuse_file_info
 	}
 	
 	(void) fi;
-	
     int res;
+    FILE * file_in;
     
     char* full_path = absolute_path(path);
     
     res = creat(full_path, mode);
+    
     if(res == -1) {
 		printf("Failed to create path");
 		return -errno;
 	}
 	
-
     close(res);
+    
+    file_in = fopen(full_path, "r+");   
+    
+    if (do_crypt(file_in, file_in, ENCRYPT , key_phrase)) {
+		if (!set_encryption_attr(full_path)) {
+			fprintf(stderr, "Failed to set encryption attribute\n");
+		}
+	}
+	else {
+		fprintf(stderr, "Failed to encrypt file\n");
+	}
+	
+	fclose(file_in);
 
     return 0;
 }
@@ -580,23 +704,37 @@ static struct fuse_operations pa5_encfs_oper = {
 };
 
 
-
+// ./pa5-encfs [options] <key phrase> <mirror directory> <mount point>
 int main(int argc, char *argv[])
 {
 	umask(0);
-	if ((argc < 3) || (argv[argc-2][0] == '-') || (argv[argc-1][0] == '-')) {
-		fprintf(stderr, "usage:  pa5-encfs [FUSE and mount options] rootDir mountPoint\n");
+	if ((argc < 4) || (argv[argc-2][0] == '-') || (argv[argc-1][0] == '-')) {
+		fprintf(stderr, "usage:  pa5-encfs [FUSE and mount options] <Key Phrase> <Mirror Directory> <Mount Point>\n");
 		exit(1);
 	}
 	
-	root_dir = realpath(argv[argc - 1], NULL);
+	mount_point = realpath(argv[argc - 1], NULL);
+	mirror_dir = realpath(argv[argc - 2], NULL);
+	key_phrase = argv[argc - 3];
 	
-	if (root_dir == NULL){
+	argv[argc -3] = argv[argc - 1];
+	argv[argc - 1] = NULL;
+	argc--;
+	
+	if (mirror_dir == NULL){
 		fprintf(stderr, "Enter a valid root directory name\n");
 	}
+	if (mount_point == NULL) {
+		fprintf(stderr, "Enter valid mount point\n");
+	}
+	if (key_phrase == NULL) {
+		fprintf(stderr, "Enter a passphrase\n");
+	}
 	
+	printf("key phrase = %s\n", key_phrase);
+	printf("mirror directory = %s\n", mirror_dir);
+	printf("mount point = %s\n", mount_point);
 	
-	printf("path = %s\n", root_dir);
 	argc--;
 	return fuse_main(argc, argv, &pa5_encfs_oper, NULL);
 }
