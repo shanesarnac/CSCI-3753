@@ -1,0 +1,22 @@
+
+Author: Shane Sarnac
+CSCI 3753 
+Fall 2016
+
+---Executables---
+./pa5-encfs		Mounts a fuse file system to a given folder destination 
+				mirroring another given system. 
+
+---Examples---
+Build:
+ make
+
+Clean:
+ make clean
+
+pa5-encfs:
+	pa5-encfs [fuse options] <Passphrase> < Mirror Directory> < Mount Point>
+
+
+
+
